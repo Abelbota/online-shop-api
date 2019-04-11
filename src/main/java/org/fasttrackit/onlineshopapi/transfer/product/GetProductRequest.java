@@ -1,0 +1,52 @@
+package org.fasttrackit.onlineshopapi.transfer.product;
+
+public class GetProductRequest {
+
+    private String partialName;
+    private Double minimumPrice;
+    private Double maximumPrice;
+    private Integer minimumQuantity;
+
+
+    public String getPartialName() {
+        return partialName;
+    }
+
+    public void setPartialName(String partialName) {
+        this.partialName = partialName;
+    }
+
+    public Double getMinimumPrice() {
+        return minimumPrice;
+    }
+
+    public void setMinimumPrice(double minimumPrice) {
+        this.minimumPrice = minimumPrice;
+    }
+
+    public Double getMaximumPrice() {
+        return maximumPrice;
+    }
+
+    public void setMaximumPrice(double maximumPrice) {
+        this.maximumPrice = maximumPrice;
+    }
+
+    public Integer getMinimumQuantity() {
+        return minimumQuantity;
+    }
+
+    public void setMinimumQuantity(int minimumQuantity) {
+        this.minimumQuantity = minimumQuantity;
+    }
+
+    @Override
+    public String toString() {
+        return "GetProductRequest{" +
+                "partialName='" + partialName + '\'' +
+                ", minimumPrice=" + minimumPrice +
+                ", maximumPrice=" + maximumPrice +
+                ", minimumQuantity=" + minimumQuantity +
+                '}';
+    }
+}

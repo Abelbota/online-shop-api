@@ -3,13 +3,18 @@ package org.fasttrackit.onlineshopapi;
 import org.fasttrackit.onlineshopapi.domain.Product;
 import org.fasttrackit.onlineshopapi.exception.ResourceNotFoundException;
 import org.fasttrackit.onlineshopapi.service.ProductService;
-import org.fasttrackit.onlineshopapi.transfer.CreateProductRequest;
-import org.fasttrackit.onlineshopapi.transfer.UpdateProductRequest;
+import org.fasttrackit.onlineshopapi.transfer.product.CreateProductRequest;
+import org.fasttrackit.onlineshopapi.transfer.product.GetProductRequest;
+import org.fasttrackit.onlineshopapi.transfer.product.UpdateProductRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.awt.print.Pageable;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -81,5 +86,23 @@ public class ProductServiceIntegrationTests {
 
         productService.deleteProduct(createdProduct.getId());
         productService.getProduct(createdProduct.getId());
+    }
+    @Test
+    public void testGetProducts_WhenAllCriterialProvideAndMatching_ThenReturn () {
+
+
+        Product createdProduct = createProduct();
+
+        GetProductRequest request = new GetProductRequest();
+        request.setPartialName("top");
+        request.setMinimumPrice(9.9);
+        request.setMaximumPrice(10.1);
+        request.setMinimumQuantity(1);
+
+       Page<Product> products = productService.getProducts(request, PageRequest.of(0,10));
+       assertThat(products.getTotalElements(),greaterThanOrEqualTo(1L));
+
+
+
     }
 }
