@@ -6,9 +6,9 @@ spring:
     generate-ddl: true
 
   datasource:
-    url: jdbc:mysql://localhost:3306/online_shop?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/online_shop?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
     username: shop-admin
     password: admin
 
 server:
-  port: 8082
+  port: 8081

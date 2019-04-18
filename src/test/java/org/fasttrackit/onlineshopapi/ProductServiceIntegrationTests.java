@@ -36,7 +36,7 @@ public class ProductServiceIntegrationTests {
     }
 
     private Product createProduct() {
-        CreateProductRequest request= new CreateProductRequest();
+        CreateProductRequest request = new CreateProductRequest();
         request.setName("Laptop");
         request.setPrice(10);
         request.setQuantity(3);
@@ -50,15 +50,17 @@ public class ProductServiceIntegrationTests {
         productService.getProduct(0);
 
     }
+
     @Test
     public void testGetProduct_WhenExistingId_ThenReturnMatchingProduct() throws ResourceNotFoundException {
         Product product = createProduct();
 
-        Product retrieveProduct  = productService.getProduct(product.getId());
+        Product retrieveProduct = productService.getProduct(product.getId());
 
         assertThat(retrieveProduct.getId(), is(product.getId()));
         assertThat(retrieveProduct.getName(), is(product.getName()));
     }
+
     @Test
     public void testUpdateProduct_WhenValidRequestWithAllFields_ThenReturnUpdatedProduct() throws ResourceNotFoundException {
         Product createdproduct = createProduct();
@@ -72,23 +74,24 @@ public class ProductServiceIntegrationTests {
                 productService.updateProduct(createdproduct.getId(), request);
 
         assertThat(updatedProduct.getName(), is(request.getName()));
-        assertThat(updatedProduct.getName(),not(createdproduct.getName()));
+        assertThat(updatedProduct.getName(), not(createdproduct.getName()));
         assertThat(updatedProduct.getPrice(), is(request.getPrice()));
         assertThat(updatedProduct.getQuantity(), is(request.getQuantity()));
         assertThat(updatedProduct.getSku(), is(request.getSku()));
 
 
-
     }
+
     @Test(expected = ResourceNotFoundException.class)
-    public void  testDeleteProduct_WhenExistingId_ThenProductIsDeleted() throws ResourceNotFoundException {
+    public void testDeleteProduct_WhenExistingId_ThenProductIsDeleted() throws ResourceNotFoundException {
         Product createdProduct = createProduct();
 
         productService.deleteProduct(createdProduct.getId());
         productService.getProduct(createdProduct.getId());
     }
+
     @Test
-    public void testGetProducts_WhenAllCriterialProvideAndMatching_ThenReturn () {
+    public void testGetProducts_WhenAllCriterialProvideAndMatching_ThenReturn() {
 
 
         Product createdProduct = createProduct();
@@ -99,10 +102,11 @@ public class ProductServiceIntegrationTests {
         request.setMaximumPrice(10.1);
         request.setMinimumQuantity(1);
 
-       Page<Product> products = productService.getProducts(request, PageRequest.of(0,10));
-       assertThat(products.getTotalElements(),greaterThanOrEqualTo(1L));
+        Page<Product> products =
+                productService.getProducts(request, PageRequest.of(0, 10));
+        assertThat(products.getTotalElements(), greaterThanOrEqualTo(1L));
 
-
+//       todo:for each product from the response assert that all criteria ar matched
 
     }
 }

@@ -10,4 +10,5 @@ public class OnlineShopApiApplication {
 		SpringApplication.run(OnlineShopApiApplication.class, args);
 	}
 
+
 }
