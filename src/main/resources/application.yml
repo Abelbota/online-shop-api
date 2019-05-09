@@ -1,12 +1,12 @@
 spring:
   jpa:
     show-sql: true
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create
     properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
     generate-ddl: true
 
   datasource:
-    url: jdbc:mysql://localhost:3306/online_shop?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    url: jdbc:mysql://localhost:3306/online_shop?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     username: shop-admin
     password: admin
 
